@@ -3,7 +3,22 @@ name: email-triage
 description: Triage inbox — auto-respond polite emails, draft business emails for HITM review
 ---
 
-# /email-triage — Inbox Triage
+# /email-triage — Inbox Triage (Compound Skill)
+
+<trl>
+DEFINE "email-triage" AS FUNCTION compound.
+FUNCTION email-triage CONTAINS FUNCTION email-fetch THEN FUNCTION email-read THEN FUNCTION email-classify THEN FUNCTION email-respond THEN FUNCTION email-draft.
+FUNCTION email-fetch SHALL READ ALL RECORD email 'where RECORD status EQUALS "unread".
+FUNCTION email-read SHALL READ EACH RECORD email BY RECORD uid.
+FUNCTION email-classify SHALL CLASSIFY EACH RECORD email AS RECORD tier.
+RECORD hitm_gate SHALL REQUIRE PARTY human APPROVE EACH RECORD tier 'before CONTINUE.
+IF RECORD tier EQUALS "POLITE" THEN FUNCTION email-respond SHALL EXECUTE.
+IF RECORD tier EQUALS "BUSINESS" THEN FUNCTION email-draft SHALL EXECUTE.
+IF RECORD tier EQUALS "IGNORE" THEN SKIP.
+FUNCTION email-triage SHALL RESPOND 'with RECORD report TO PARTY human.
+</trl>
+
+**Primitives used:** email-fetch, email-read, email-classify, email-respond, email-draft
 
 Triage unread emails across configured accounts. Classify each email, auto-respond to polite-tier, draft business-tier for human review.
 
