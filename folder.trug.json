@@ -1,0 +1,87 @@
+{
+  "name": "MCP",
+  "version": "1.0.0",
+  "type": "REPOSITORY",
+  "description": "MCP servers for Claude Code — browser automation, email (Gmail), GIMP, Inkscape, LibreOffice, Tesseract OCR. 53 tools, 7 skills.",
+  "dimensions": {
+    "tooling": {
+      "description": "MCP server collection: servers, skills, shared utilities, tests",
+      "base_level": "BASE"
+    }
+  },
+  "capabilities": {
+    "extensions": [],
+    "vocabularies": ["code_v1"],
+    "profiles": []
+  },
+  "meta": {
+    "generated_by": "manual",
+    "last_synced": "2026-04-05",
+    "owner": "Xepayac",
+    "license": "MIT",
+    "repository": "https://github.com/Xepayac/MCP"
+  },
+  "nodes": [
+    {
+      "id": "repo_root",
+      "type": "REPOSITORY",
+      "properties": {
+        "name": "MCP",
+        "description": "MCP tool servers for Claude Code. 53 tools across 6 servers, 7 skills."
+      },
+      "parent_id": null,
+      "contains": ["comp_servers", "comp_skills", "comp_shared", "comp_tests"],
+      "metric_level": "KILO_REPOSITORY",
+      "dimension": "tooling"
+    },
+    {
+      "id": "comp_servers",
+      "type": "MODULE",
+      "properties": {
+        "name": "servers/",
+        "description": "MCP server implementations — browser, email, GIMP, Inkscape, LibreOffice, Tesseract"
+      },
+      "parent_id": "repo_root",
+      "contains": [],
+      "metric_level": "BASE_MODULE",
+      "dimension": "tooling"
+    },
+    {
+      "id": "comp_skills",
+      "type": "MODULE",
+      "properties": {
+        "name": "skills/",
+        "description": "Claude Code skills — email triage, session management"
+      },
+      "parent_id": "repo_root",
+      "contains": [],
+      "metric_level": "BASE_MODULE",
+      "dimension": "tooling"
+    },
+    {
+      "id": "comp_shared",
+      "type": "MODULE",
+      "properties": {
+        "name": "shared/",
+        "description": "Shared utilities across servers"
+      },
+      "parent_id": "repo_root",
+      "contains": [],
+      "metric_level": "BASE_MODULE",
+      "dimension": "tooling"
+    },
+    {
+      "id": "comp_tests",
+      "type": "MODULE",
+      "properties": {
+        "name": "tests/",
+        "description": "Test suite"
+      },
+      "parent_id": "repo_root",
+      "contains": [],
+      "metric_level": "BASE_MODULE",
+      "dimension": "tooling"
+    }
+  ],
+  "edges": []
+}
