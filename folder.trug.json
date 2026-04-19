@@ -30,7 +30,7 @@
         "description": "MCP tool servers for Claude Code. 53 tools across 6 servers, 7 skills."
       },
       "parent_id": null,
-      "contains": ["comp_servers", "comp_skills", "comp_shared", "comp_tests"],
+      "contains": ["comp_servers", "comp_skills", "comp_shared", "comp_tests", "doc_agent_md"],
       "metric_level": "KILO_REPOSITORY",
       "dimension": "tooling"
     },
@@ -81,7 +81,25 @@
       "contains": [],
       "metric_level": "BASE_MODULE",
       "dimension": "tooling"
+    },
+    {
+      "id": "doc_agent_md",
+      "type": "DOCUMENT",
+      "properties": {
+        "name": "AGENT.md",
+        "description": "LLM agent orientation — what this repo is, structure, companion repos, license. Follows the pattern in TRUGS-LLC/TRUGS and TRUGS-LLC/TRUGS-AGENT."
+      },
+      "parent_id": "repo_root",
+      "contains": [],
+      "metric_level": "BASE_DOCUMENT",
+      "dimension": "tooling"
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "from": "repo_root",
+      "to": "doc_agent_md",
+      "relation": "CONTAINS"
+    }
+  ]
 }
